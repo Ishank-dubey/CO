@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CrossOver Project</title>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+.Pending{
+     border: 2px solid gray;
+     color:gray;
+}
+
+.Running{
+	 border: 2px solid blue;
+     color:blue;
+	 background: -moz-linear-gradient(left,  rgba(0,0,255,0.28) 0%, rgba(255,255,255,0.77) 100%); /* FF3.6-15 */
+	 background: -webkit-linear-gradient(left,  rgba(0,0,255,0.28) 0%,rgba(255,255,255,0.77) 100%); /* Chrome10-25,Safari5.1-6 */
+	 background: linear-gradient(to right,  rgba(0,0,255,0.28) 0%,rgba(255,255,255,0.77) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#470000ff', endColorstr='#c4ffffff',GradientType=1 ); /* IE6-9 */
+}
+
+.Rejected{
+	 border: 2px solid red;
+     color:blue;
+	 background: -moz-linear-gradient(left,  rgba(255,0,0,0.28) 0%, rgba(255,255,255,0.77) 100%); /* FF3.6-15 */
+     background: -webkit-linear-gradient(left,  rgba(255,0,0,0.28) 0%,rgba(255,255,255,0.77) 100%); /* Chrome10-25,Safari5.1-6 */
+     background: linear-gradient(to right,  rgba(255,0,0,0.28) 0%,rgba(255,255,255,0.77) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47ff0000', endColorstr='#c4ffffff',GradientType=1 ); /* IE6-9 */
+}
+
+.Complete, .Accepted{
+    border: 2px solid green;
+    color:green;
+    background: -moz-linear-gradient(left,  rgba(0,255,0,0.28) 0%, rgba(255,255,255,0.77) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  rgba(0,255,0,0.28) 0%,rgba(255,255,255,0.77) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  rgba(0,255,0,0.28) 0%,rgba(255,255,255,0.77) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4700ff00', endColorstr='#c4ffffff',GradientType=1 ); /* IE6-9 */
+    
+}
+
+.Accepted{
+}
+
+img[src*="-"]{
+  width:30px;
+  height:30px;  
+}
+
+img:not([src*="-"]){
+  width:40px;
+  height:30px;  
+}
+
+.row > .column:nth-child(2),.row > .column:nth-child(3),.row > .column:nth-child(4){
+padding-top: 5px;
+}
+
+.container{
+  font-family: sans-serif, "Lucida Sans", "Times New Roman", Times, serif;
+  width:100%;
+  height:100%;
+  background: rgba(226,226,226,1);
+  background: -moz-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(226,226,226,1)), color-stop(51%, rgba(209,209,209,1)), color-stop(100%, rgba(254,254,254,1)));
+  background: -webkit-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+  background: -o-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+  background: -ms-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+  background: linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=1 );padding:5px;
+  min-width:1142px;
+}
+.row_header{
+  display: block;
+  width:100%;
+  height: 30px;
+  padding:7px;
+}
+
+.row > .column , .row_expanded > .column{
+  font-size:14px;
+}
+
+.row_header > .column{
+  font-size:14px;
+  font-weight: bold;
+}
+
+.column{
+  float: left;
+  width:12.5%;
+  height:33px;
+  display: inline-block;
+  
+}
+
+/* .column > img{
+width:30px;
+height:30px;
+} */
+
+.column > span{
+  position:relative;
+  top:-10px;
+  padding-left: 10px;
+}
+ .row{
+  display: block;
+  width:100%;
+  height: 45px;
+  padding:5px;
+  margin-top:5px;
+  cursor:pointer;
+  -webkit-transition: height .5s; /* Safari */
+   transition:  height .5s;
+ }
+ 
+ .row_expanded{
+  display: block;
+  width:100%;
+  height: 120px;
+  padding:5px;
+  margin-top:5px;
+  cursor:pointer;
+ }
+
+.row::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.column::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.expanded_container{
+float : left;
+width : 100%;
+height : 200px;
+/* background : red; */
+}
+
+.expanded_container > div{
+  float: left;
+  width:17%;
+  height:180px;
+  display: inline-block;
+  /* background: white; */
+  margin-right: 15px;
+  margin-left: 15px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e8e8e8+0,ffffff+100,ffffff+100,ffffff+100&1+0,1+0,0.77+100 */
+  background: -moz-linear-gradient(left,  rgba(232,232,232,1) 0%, rgba(255,255,255,0.77) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  rgba(232,232,232,1) 0%,rgba(255,255,255,0.77) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  rgba(232,232,232,1) 0%,rgba(255,255,255,0.77) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', endColorstr='#c4ffffff',GradientType=1 ); /* IE6-9 */
+  padding-left: 5px;
+}
+
+.upArrow{
+  background-image:url('Resources/top_arrow.jpg');
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size:contain;
+  text-align: center;
+  padding:5px;
+  color:black;
+  margin-right:20px;
+  margin-left:20px;
+  float:left;
+  display:inline-block;
+  height:70px;
+  width:40px;
+}
+
+.downArrow{
+  background-image:url('Resources/down-red-arrow.jpg');
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size:contain;
+  text-align: center;
+  padding:5px;
+  color:black;
+  margin-right:20px;
+  margin-left:20px;
+  float:left;
+  display:inline-block;
+  height:70px;
+  width:40px;
+}
+.rightArrow{
+  background-image:url('Resources/Yellow_Arrow_Right.jpg');
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size:contain;
+  text-align: center;
+  padding:5px;
+  color:black;
+  margin-right:20px;
+  margin-left:20px;
+  float:left;
+  display:inline-block;
+  height:70px;
+  width:70px;
+}
+
+
+.shadow{
+  -webkit-box-shadow: 10px 10px 5px -5px rgba(0,0,0,1);
+  -moz-box-shadow: 10px 10px 5px -5px rgba(0,0,0,1);
+  box-shadow: 10px 10px 5px -5px rgba(0,0,0,1);   
+}
+
+
+
+.buildDebug{
+  width:100%;
+  height:100px;
+  background-image:url('Resources/dr.jpg');
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size:contain;
+  text-align: center;
+  float:left;
+  display:block;
+}
+
+.bottomClass{
+   width:100%;
+   height:20px;
+   margin-top:35px;
+   float:left;
+   text-align: center;
+   color:black;
+}
+
+.coverage{
+  width:100%;
+  height:100px;
+  background-image:url('Resources/pc.jpg');
+  background-repeat: no-repeat;
+  background-position: left;
+  padding-top : 40px; 
+  background-size:contain;
+  float:left;
+  display:block;
+  padding-left: 20px;
+}
+
+
+.bottomClassCoverage{
+   background-image:url('Resources/coverage.jpg');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size:contain;
+}
+
+.coverage > div{
+  float:left;
+  diplay:inline-block;
+}
+
+.fontAccepted{
+  color: #D2691E;
+}
+
+.fontRejected{
+  color: red;
+}
+
+.fontPending{
+  color: gray;
+}
+
+.fontComplete{
+  color:#008000;
+}
+
+</style>
+</head>
+<body ng-app="CoP">
+
+<ng-view></ng-view>
+
+
+
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+
+<script src="app.js"></script>
+<script src="AppRouter.js"></script>
+
+<script src="Modules/Module1.js"></script>
+<script src="Components/Module1Component.js"></script>
+
+</body>
+</html>

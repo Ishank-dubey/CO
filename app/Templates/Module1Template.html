@@ -1,0 +1,120 @@
+
+<div class="container">
+
+
+	<div class="row_header">
+		<div class="column">{{aM1Ctrl.titleType}}</div>
+		<div class="column">{{aM1Ctrl.titleOwner}}</div>
+		<div class="column">{{aM1Ctrl.titleTimeStarted}}</div>
+		<div class="column">{{aM1Ctrl.titleState}}</div>
+		<div class="column">{{aM1Ctrl.titleMetrics}}</div>
+		<div class="column">{{aM1Ctrl.titleBuild}}</div>
+		<div class="column">{{aM1Ctrl.titleUnitTest}}</div>
+		<div class="column">{{aM1Ctrl.titleFunctionalTest}}</div>
+	</div>
+
+	<div class="row" ng-repeat="row in aM1Ctrl.details"
+		ng-class="row.status" ng-click="aM1Ctrl.clickMethod($event)" id="{{$index}}_row">
+
+		<div class="column">
+			<img ng-src="{{row.image}}" alt="{{row.name}}" /> <span>{{row.name}}</span>
+		</div>
+
+		<div class="column">{{row.owner}}</div>
+
+		<div class="column">{{row.timeStarted}}</div>
+
+		<div class="column">{{row.status}}</div>
+
+		<div class="column">
+			<img ng-src="Resources/{{row.metrics}}.jpg" alt="{{row.name}}" />
+		</div>
+
+		<div class="column">
+			<img ng-src="Resources/{{row.build}}.jpg" alt="{{row.name}}" />
+		</div>
+
+		<div class="column">
+			<img ng-src="Resources/{{row.unit_test}}.jpg" alt="{{row.name}}" />
+		</div>
+
+		<div class="column">
+			<img ng-src="Resources/{{row.functional_test}}.jpg" alt="{{row.name}}" />
+		</div>
+		
+		
+	</div>
+	
+</div>
+
+  <div class="expanded_container" style="display:none;font-size: 14px;">
+  <div class="shadow" ng-class="aM1Ctrl.metricsDetailStatus" ng-click="aM1Ctrl.detailViewBuildMethod($event)">
+  <div style="font-weight:bold;">Metrics
+  </div>
+  <div class="upArrow" >
+  <p>{{aM1Ctrl.test}}</p>
+  <p>Test</p>
+  </div>
+  <div class="downArrow" style="float:left;position:relative;left:-10px;display:inline-block;height:70px;width:40px;">
+  <p>64</p>
+  <p style="position:relative;left:-8px;">Maintainability</p>
+  </div>
+  <div class="rightArrow" style="float:left;display:inline-block;height:70px;width:40px;">
+  <p>64</p>
+  <p>Security</p>
+  </div>
+  <div class="rightArrow" style="float:left;display:inline-block;height:70px;width:40px;position:relative;left:-10px;">
+  <p>64</p>
+  <p style="position:relative;left:-10px;">Worksmanship</p>
+  </div>
+  </div>
+  
+  <div class="shadow" style="padding-left: 0px;" ng-class="aM1Ctrl.buildDetailStatus" ng-click="aM1Ctrl.detailViewBuildMethod($event)">
+  <div style="font-weight:bold;padding-left:20px;">Build</div>
+  
+  <div class="buildDebug"></div>
+  
+  <div class="bottomClass">{{aM1Ctrl.time}}</div>
+  </div>
+  <div class="shadow" style="padding-left: 0px;" ng-class="aM1Ctrl.unitTestDetailStatus" ng-click="aM1Ctrl.detailViewBuildMethod($event)">
+  <div style="font-weight:bold;padding-left:20px;">Unit Test
+  </div>
+  
+  <div class="coverage">
+  <div style="width:30%;">{{aM1Ctrl.testPassed}}</div>
+  <div style="width:20%;">{{aM1Ctrl.failed}}</div>
+  <div style="width:50%;text-align:center;position:relative;top:-20px;">
+  <h1>{{aM1Ctrl.percentage}}</h1>
+  <p style="position:relative;top:-20px;">tests passed</p>
+  </div>
+  </div>
+  
+  <div class="bottomClassCoverage bottomClass">{{aM1Ctrl.coverage}}&nbsp;&nbsp;code covered</div>
+  </div>
+  <div class="shadow" ng-class="aM1Ctrl.functionalTestDetailStatus" ng-click="aM1Ctrl.detailViewBuildMethod($event)">
+  <div style="font-weight:bold;">Functional Test
+  </div>
+  
+  <div class="coverage">
+  <div style="width:30%;">{{aM1Ctrl.functionalTestPassed}}</div>
+  <div style="width:20%;">{{aM1Ctrl.functionalFailed}}</div>
+  <div style="width:50%;text-align:center;position:relative;top:-20px;">
+  <h1>{{aM1Ctrl.functionalPercentage}}</h1>
+  <p style="position:relative;top:-20px;">tests passed</p>
+  </div>
+  </div>
+  
+  <div class="bottomClassCoverage bottomClass">{{aM1Ctrl.functionalCoverage}}&nbsp;&nbsp;code covered</div>
+  </div>
+  <div ng-class="{{aM1Ctrl.functionalTestDetailStatus}}" ng-click="aM1Ctrl.detailViewBuildMethod($event)">
+  <div style="width:100%;height:30px;text-align: center;">Result:</div>
+  <div style="width:100%;height:30px;text-align: center;" ng-hide="aM1Ctrl.cRejected" ng-class= "aM1Ctrl.fontClass">
+       {{aM1Ctrl.acceptedOrRejected}}
+  </div>
+  <div style="width:100%;height:60px;text-align: center;" ng-class= "aM1Ctrl.fontClass"><h2>{{aM1Ctrl.message}}</h2></div>
+  <div class="Pending" style="color:white;width:100%;height:40px;text-align:center;padding:9px;background:#6495ED">{{aM1Ctrl.buttonMessage}}</div>
+  <span ng-hide="aM1Ctrl.ahidden">to :</span><select ng-hide="aM1Ctrl.ahidden">
+  <option value="production">Production</option>
+  </select>
+  </div>
+  </div>

@@ -1,0 +1,33 @@
+{
+   "metrics":{
+	   "metricsDetailStatus":"Running",
+	   "test": "64",
+	   "maintainability" : "53",
+	   "security" : "64",
+	   "workmanship": "72"
+   },
+   "build" :{
+	   "buildDetailStatus":"Pending",
+	   "time": "10:46am 4/17/2014"
+   },
+   "unitTest":{
+	   "unitTestDetailStatus":"Pending",
+	   "testPassed": "140",
+	   "failed" : "10",
+	   "percentage" : "73%",
+	   "coverage": "76%"
+   },
+   "functionalTest":{
+	   "functionalTestDetailStatus":"Pending",
+	   "functionalTestPassed": "130",
+	   "functionalFailed" : "10",
+	   "functionalPercentage" : "75%",
+	   "functionalCoverage": "23%"
+   },
+   "result" : {
+	   "status" : "Running",
+	   "message" : "Metrics Running",
+	   "buttonMessage" : "Running",
+	   "acceptedOrRejected" : "Running"
+   }
+   }

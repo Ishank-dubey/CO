@@ -1,0 +1,32 @@
+{
+  "name": "CrossOver",
+  "version": "0.0.1",
+  "description": "CrossOver Project",
+  "main": "app.js",
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "http-server ./app localhost -p 8000 -c-1",
+    "test": "karma start karma.config.js"
+  },
+  "repository": "",
+  "keywords": [
+    "node.js",
+    "eclipse",
+    "nodeclipse"
+  ],
+  "author": "",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "http-server": "latest"
+  },
+  "devDependencies": {
+    "jasmine-core": "latest",
+    "karma": "latest",
+    "karma-htmlfile-reporter": "^0.3.4",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^0.1.2",
+    "phantomjs": "^1.9.18",
+    "phantomjs-polyfill": "0.0.2"
+  }
+}
