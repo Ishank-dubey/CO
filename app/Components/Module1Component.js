@@ -43,8 +43,10 @@
 	    				 }
 	    			 }
 	    			 aPreviousCOntainer = aPreviousRow.getElementsByClassName("expanded_container");
+	    			 if(aPreviousRow && aPreviousCOntainer[0]){
 	    			 aRemovedContainer = aPreviousRow.removeChild(aPreviousCOntainer[0]);
 	    			 aPreviousRow.style.height = "45px";
+	    			 }
 	    		 }
 	    		 
 	    		 /*Add detail view div*/
@@ -124,8 +126,10 @@
 	    				 aCurrentRow.appendChild(aRemovedContainer);
 	    			 else {
 	    				 var aExpansionElement = document.getElementsByClassName("expanded_container")[0];
+	    				 if(aExpansionElement){
 	    				 aExpansionElement.style.display = "";
 	    				 aCurrentRow.appendChild(aExpansionElement);
+	    				 }
 	    				 }
 		    		 $rootScope.previousExpandedRow = anIdSelectedRow;	 
 	    		 },500);
