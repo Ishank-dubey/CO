@@ -18,7 +18,7 @@
 		 aM1Ctrl.titleBuild = "Build";
 		 aM1Ctrl.titleUnitTest = "Unit Test";
 		 aM1Ctrl.titleFunctionalTest = "Functional Test";
-		 
+		 //Test egit
 		 
 		 $rootScope.previousExpandedRow = "";
 		 
