@@ -2,7 +2,7 @@
 
 # SPA using Angular JS
 
-### Useful for coding challenges of various companies.
+
 
 ### Tools
 
